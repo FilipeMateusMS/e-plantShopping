@@ -17,8 +17,13 @@ export const CartSlice = createSlice({
                 state.items.push({ name, image, cost, quantity: 1 });
             }
         },
-        removeItem: (state, action) => {
-            state.items = state.items.filter(item => item.name !== action.payload);
+        removeItem: (state, action) => {  
+            console.log('Itens list len:', state.items.length);
+            const filteredItems = state.items.filter(item => 
+                item.name !== action.payload.name
+            );
+            state.items = filteredItems;
+            console.log('Itens list len:', state.items.length);
         },
         updateQuantity: (state, action) => {
             const { name, quantity } = action.payload;
